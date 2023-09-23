@@ -8,9 +8,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.healthcheck.demohealthcheck.controller.clientController.ClientController;
+import com.healthcheck.demohealthcheck.entity.EMedicalData;
 import com.healthcheck.demohealthcheck.model.Client;
 import com.healthcheck.demohealthcheck.model.Login;
 import com.healthcheck.demohealthcheck.model.PersonalInfo;
+import com.healthcheck.demohealthcheck.model.database.MedicalDatabase;
 import com.healthcheck.demohealthcheck.model.exception.InvalidFormatException;
 import com.healthcheck.demohealthcheck.model.medicalData.BodyMeasurement;
 import com.healthcheck.demohealthcheck.model.medicalData.VitalSigns;
@@ -23,6 +25,12 @@ public class ClientControllerImpl implements ClientController {
     @Autowired
     ClientService clientService;
 
+    @Override
+    public EMedicalData save(EMedicalData medicalData) {
+        return clientService.save(medicalData);
+    }
+
+    //
     @Override
     public Optional<Client> create(Client client) {
         Login login = client.getLogin();
@@ -194,4 +202,5 @@ public class ClientControllerImpl implements ClientController {
     }
 
 
+    
 }

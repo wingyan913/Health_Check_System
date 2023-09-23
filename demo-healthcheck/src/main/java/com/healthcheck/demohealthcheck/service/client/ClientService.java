@@ -3,6 +3,7 @@ package com.healthcheck.demohealthcheck.service.client;
 import java.util.Optional;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
+import com.healthcheck.demohealthcheck.entity.EMedicalData;
 import com.healthcheck.demohealthcheck.model.Client;
 import com.healthcheck.demohealthcheck.model.Login;
 import com.healthcheck.demohealthcheck.model.PersonalInfo;
@@ -11,10 +12,15 @@ import com.healthcheck.demohealthcheck.model.medicalData.VitalSigns;
 
 public interface ClientService {
 
+    // entity / repository
+    EMedicalData save(EMedicalData medicalData);
+
+
+    //
     Optional<Client> create(Client client);
 
     // Optional<Client> create(Login login, PersonalInfo personalInfo);
-    
+
     Optional<Client> findByEmail(String email);
 
     Optional<Client> findByUsername(String username);
@@ -39,14 +45,16 @@ public interface ClientService {
 
     Optional<Client> patchPasswordByUsername(String username, String password);
 
-    Optional<Client> patchFirstnameByUsername(String username, String firstname);
+    Optional<Client> patchFirstnameByUsername(String username,
+            String firstname);
 
     Optional<Client> patchLastnameByUsername(String username, String lastname);
 
     /**
      * Body Measurement
      */
-    Optional<Client> patchBMByUsername(String username, BodyMeasurement bodyMeasurement);
+    Optional<Client> patchBMByUsername(String username,
+            BodyMeasurement bodyMeasurement);
 
     /*
      * Vital Signs
@@ -55,8 +63,4 @@ public interface ClientService {
 
 
 
-
-
-
-    
 }
